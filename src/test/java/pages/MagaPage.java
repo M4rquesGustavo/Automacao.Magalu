@@ -1,7 +1,9 @@
 package pages;
 
 import maps.magaMap;
+import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,10 +21,6 @@ public class MagaPage {
         this.map = new magaMap(driver);
     }
 
-    // =========================
-    // MÉTODOS DE APOIO
-    // =========================
-
     private WebDriverWait getWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(10));
     }
@@ -37,37 +35,32 @@ public class MagaPage {
         element.sendKeys(text);
     }
 
-    // ===== EMAIL INICIAL =====
+    public void pesquisoUmProduto(String text) {
+        type(map.inputSearch, text);
+        map.inputSearch.sendKeys(Keys.ENTER);
+    }
+
+    public void selecionoUmProduto(){
+        click(map.clickProduct);
+    }
+
+    public void ComprarProdutoEaceitarTermos(){
+        click(map.clickToBuy);
+        click(map.clickInclude);
+    }
 
     public void digitarEmail(String email) {
         type(map.inputLogin, email);
     }
 
     public void clicarCriarContaInicial() {
-        click(map.clickMake);
+        click(map.clickCreate);
     }
-
-    // =========================
-    // AÇÕES DA PÁGINA
-    // =========================
 
     public void clicarHeaderUsuario() {
         click(map.headerActionUser);
     }
 
-    public void preencherComponente(String componente) {
-        type(map.inputComponent, componente);
-    }
-
-    public void preencherLogin(String login) {
-        type(map.inputLogin, login);
-    }
-
-    public void clicarCriarConta() {
-        click(map.clickMake);
-    }
-
-    // ===== DADOS PESSOAIS =====
 
     public void preencherNome(String nome) {
         type(map.inputName, nome);
@@ -86,8 +79,6 @@ public class MagaPage {
         type(map.inputPassword, senha);
     }
 
-    // ===== ENDEREÇO =====
-
     public void preencherCep(String cep) {
         type(map.inputCep, cep);
     }
@@ -101,8 +92,6 @@ public class MagaPage {
         );
 
         botao.click();
-
-        // NÃO espere a API preencher nada
     }
 
     public void preencherEndereco(String endereco) {type(map.inputAddress, endereco); }
@@ -123,8 +112,6 @@ public class MagaPage {
         type(map.inputTelephone, telefone);
     }
 
-    // ===== FINALIZAÇÃO =====
-
     public void aceitarTermos() {
         click(map.acceptTerms);
     }
@@ -141,7 +128,7 @@ public class MagaPage {
     }
 
 
-    // ===== FLUXO COMPLETO =====
+    //  FLUXO COMPLETO
 
     public void realizarCadastroCompleto(String nome, String nascimento,
                                          String cpf, String senha,

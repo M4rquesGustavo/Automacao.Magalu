@@ -1,5 +1,6 @@
 package maps;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,12 +15,20 @@ public class magaMap {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(id = "header-search-input")
+    public WebElement inputSearch;
+
+    @FindBy(xpath = "//a[@data-testid='product-card-container']")
+    public WebElement clickProduct;
+
+    @FindBy(id = "buyButton")
+    public WebElement clickToBuy;
+
+    @FindBy(xpath = "//*[@id='servicos']/section/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/button")
+    public WebElement clickInclude;
+
     @FindBy(xpath = "//*[@id=\"home\"]/header/section/div[1]/div/div[2]")
     public WebElement headerActionUser;
-
-    // =========================
-    // CAMPOS INICIAIS
-    // =========================
 
     @FindBy(id = "input-component")
     public WebElement inputComponent;
@@ -28,11 +37,7 @@ public class magaMap {
     public WebElement inputLogin;
 
     @FindBy(css = "button[data-testid='signup']")
-    public WebElement clickMake;
-
-    // =========================
-    // DADOS PESSOAIS
-    // =========================
+    public WebElement clickCreate;
 
     @FindBy(name = "fullName")
     public WebElement inputName;
@@ -45,10 +50,6 @@ public class magaMap {
 
     @FindBy(name = "cpf")
     public WebElement inputCpf;
-
-    // =========================
-    // ENDEREÇO
-    // =========================
 
     @FindBy(name = "zipcode")
     public WebElement inputCep;
@@ -71,11 +72,7 @@ public class magaMap {
     @FindBy(name = "telephone")
     public WebElement inputTelephone;
 
-    // =========================0
-    // CHECKBOX E BOTÃO FINAL
-    // =========================
-
-    @FindBy(css = ".checked--icon")
+    @FindBy(xpath = "//label[@for='CheckboxGroup-privacyCheck']")
     public WebElement acceptTerms;
 
     @FindBy(css = ".continueButton")

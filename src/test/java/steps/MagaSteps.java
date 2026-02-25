@@ -21,10 +21,25 @@ public class MagaSteps {
     public void estouNaTelaInicial() {
         driver.get("https://www.magazineluiza.com.br/?partner_id=974&utm_source=google&utm_medium=cpc&utm_campaign=google_eco_per_ven_brd_all_sor_4p_brand-desk&utm_term=974&utm_content=none_roa_amp_none_none_tod_none&gclsrc=aw.ds&gad_source=1&gad_campaignid=1062954936&gbraid=0AAAAAD4zZmTMqkOx3JoxvoukzlEXfj-zX&gclid=EAIaIQobChMIxY79mtnlkgMVLYNaBR1Sjg_REAAYASAAEgIw_fD_BwE");
     }
+//////
+    @When("pesquiso um produto")
+    public void pesquisoUmProduto() {
+        page.pesquisoUmProduto("Notebook");
+    }
 
     @When("clico no botão de criar conta")
     public void clicarHeaderUsuario() {
         page.clicarHeaderUsuario();
+    }
+
+    @And("seleciono um produto")
+    public void selecionoUmProduto(){
+        page.selecionoUmProduto();
+    }
+
+    @And("clico em comprar e aceito a garantia recomendada")
+    public void ComprarProdutoEaceitarTermos() {
+        page.ComprarProdutoEaceitarTermos();
     }
 
     @And("digito meu email")
@@ -61,6 +76,12 @@ public class MagaSteps {
         page.aceitarTermos();
     }
 
+    @Then("fazer o login então conseguirei comprar o produto")
+    public void ComprarOProduto() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
     @Then("o cadastro deve ser realaizado com sucesso")
     public void oCadastroDeveSerRealaizadoComSucesso() {
         page.clicarContinuar();
@@ -74,4 +95,5 @@ public class MagaSteps {
                 "Mensagem esperada não foi exibida!"
         );
     }
+
 }
