@@ -19,10 +19,6 @@ public class MagaPage {
         this.map = new magaMap(driver);
     }
 
-    // =========================
-    // MÉTODOS DE APOIO
-    // =========================
-
     private WebDriverWait getWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(10));
     }
@@ -37,8 +33,6 @@ public class MagaPage {
         element.sendKeys(text);
     }
 
-    // ===== EMAIL INICIAL =====
-
     public void digitarEmail(String email) {
         type(map.inputLogin, email);
     }
@@ -47,9 +41,6 @@ public class MagaPage {
         click(map.clickMake);
     }
 
-    // =========================
-    // AÇÕES DA PÁGINA
-    // =========================
 
     public void clicarHeaderUsuario() {
         click(map.headerActionUser);
@@ -66,8 +57,6 @@ public class MagaPage {
     public void clicarCriarConta() {
         click(map.clickMake);
     }
-
-    // ===== DADOS PESSOAIS =====
 
     public void preencherNome(String nome) {
         type(map.inputName, nome);
@@ -86,8 +75,6 @@ public class MagaPage {
         type(map.inputPassword, senha);
     }
 
-    // ===== ENDEREÇO =====
-
     public void preencherCep(String cep) {
         type(map.inputCep, cep);
     }
@@ -101,8 +88,7 @@ public class MagaPage {
         );
 
         botao.click();
-
-        // NÃO espere a API preencher nada
+        
     }
 
     public void preencherEndereco(String endereco) {type(map.inputAddress, endereco); }
@@ -123,8 +109,6 @@ public class MagaPage {
         type(map.inputTelephone, telefone);
     }
 
-    // ===== FINALIZAÇÃO =====
-
     public void aceitarTermos() {
         click(map.acceptTerms);
     }
@@ -139,9 +123,6 @@ public class MagaPage {
                 .until(ExpectedConditions.visibilityOf(map.validSmsMessage))
                 .getText();
     }
-
-
-    // ===== FLUXO COMPLETO =====
 
     public void realizarCadastroCompleto(String nome, String nascimento,
                                          String cpf, String senha,
