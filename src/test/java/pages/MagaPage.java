@@ -1,7 +1,9 @@
 package pages;
 
 import maps.magaMap;
+import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,30 +35,32 @@ public class MagaPage {
         element.sendKeys(text);
     }
 
+    public void pesquisoUmProduto(String text) {
+        type(map.inputSearch, text);
+        map.inputSearch.sendKeys(Keys.ENTER);
+    }
+
+    public void selecionoUmProduto(){
+        click(map.clickProduct);
+    }
+
+    public void ComprarProdutoEaceitarTermos(){
+        click(map.clickToBuy);
+        click(map.clickInclude);
+    }
+
     public void digitarEmail(String email) {
         type(map.inputLogin, email);
     }
 
     public void clicarCriarContaInicial() {
-        click(map.clickMake);
+        click(map.clickCreate);
     }
-
 
     public void clicarHeaderUsuario() {
         click(map.headerActionUser);
     }
 
-    public void preencherComponente(String componente) {
-        type(map.inputComponent, componente);
-    }
-
-    public void preencherLogin(String login) {
-        type(map.inputLogin, login);
-    }
-
-    public void clicarCriarConta() {
-        click(map.clickMake);
-    }
 
     public void preencherNome(String nome) {
         type(map.inputName, nome);
@@ -88,7 +92,6 @@ public class MagaPage {
         );
 
         botao.click();
-        
     }
 
     public void preencherEndereco(String endereco) {type(map.inputAddress, endereco); }
@@ -123,6 +126,9 @@ public class MagaPage {
                 .until(ExpectedConditions.visibilityOf(map.validSmsMessage))
                 .getText();
     }
+
+
+    //  FLUXO COMPLETO
 
     public void realizarCadastroCompleto(String nome, String nascimento,
                                          String cpf, String senha,
