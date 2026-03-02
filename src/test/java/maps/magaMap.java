@@ -80,4 +80,13 @@ public class magaMap {
 
     @FindBy(css = "span.SelectEmailOrSms-text-info")
     public WebElement validSmsMessage;
+
+    @FindBy(css = ".FormGroup-errorMessage")
+    public WebElement invalidCpf;
+
+    @FindBy(css = ".Modal-content")
+    public WebElement invalidCep;
+
+    @FindBy(css = ".FormGroup-errorMessage[2]")
+    public WebElement invalidPassword;
 }

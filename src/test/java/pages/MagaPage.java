@@ -127,6 +127,29 @@ public class MagaPage {
                 .getText();
     }
 
+    public String validarSenhaInvalida() {
+
+        return getWait()
+                .until(ExpectedConditions.visibilityOf(map.invalidPassword))
+                .getText();
+    }
+
+    public String validarCepInvalido() {
+
+        return getWait()
+                .until(ExpectedConditions.visibilityOf(map.invalidCep))
+                .getText();
+    }
+
+    public String validarCpfInvalido() {
+
+        return getWait()
+                .until(ExpectedConditions.visibilityOf(map.invalidCpf))
+                .getText();
+    }
+
+
+
 
     //  FLUXO COMPLETO
 

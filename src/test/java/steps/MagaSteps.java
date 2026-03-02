@@ -21,7 +21,7 @@ public class MagaSteps {
     public void estouNaTelaInicial() {
         driver.get("https://www.magazineluiza.com.br/?partner_id=974&utm_source=google&utm_medium=cpc&utm_campaign=google_eco_per_ven_brd_all_sor_4p_brand-desk&utm_term=974&utm_content=none_roa_amp_none_none_tod_none&gclsrc=aw.ds&gad_source=1&gad_campaignid=1062954936&gbraid=0AAAAAD4zZmTMqkOx3JoxvoukzlEXfj-zX&gclid=EAIaIQobChMIxY79mtnlkgMVLYNaBR1Sjg_REAAYASAAEgIw_fD_BwE");
     }
-//////
+
     @When("pesquiso um produto")
     public void pesquisoUmProduto() {
         page.pesquisoUmProduto("Notebook");
@@ -42,13 +42,9 @@ public class MagaSteps {
         page.ComprarProdutoEaceitarTermos();
     }
 
-    @And("digito meu email")
+    @And("digito meu email e clico em criar conta")
     public void digitoMeuEmail() {
-        page.digitarEmail("gustavo.teste@email.com");
-    }
-
-    @And("clico em criar conta")
-    public void clicoEmCriarConta() {
+        page.digitarEmail("tester.teste@email.com");
         page.clicarCriarContaInicial();
     }
 
@@ -76,6 +72,33 @@ public class MagaSteps {
         page.aceitarTermos();
     }
 
+    @And("preencho os dados pessoais com cpf inválido")
+    public void preencherCpfInvalido() {
+        page.preencherNome("Gustavo Teste");
+        page.preencherDataNascimento("01/01/2000");
+        page.preencherCpf("11111111111");
+        page.preencherSenha("Senha123");
+    }
+
+    @And("preencho os dados pessoais com senha inválida")
+    public void preencherSenhaInvalida() {
+        page.preencherNome("Gustavo Teste");
+        page.preencherDataNascimento("01/01/2000");
+        page.preencherCpf("60738034002");
+        page.preencherSenha("123");
+    }
+
+    @And("preencho o endereço com cep inválido")
+    public void preencherCepInvalido() {
+        page.preencherCep("00000000");
+        page.confirmarCep();
+    }
+
+    @And("clico em continuar")
+    public void clicoEmContinuar() {
+        page.clicarContinuar();
+    }
+
     @Then("fazer o login então conseguirei comprar o produto")
     public void ComprarOProduto() {
         // Write code here that turns the phrase above into concrete actions
@@ -92,8 +115,29 @@ public class MagaSteps {
 
         Assert.isTrue(
                 mensagem.contains("Selecione um contato"),
-                "Mensagem esperada não foi exibida!"
-        );
+                "Mensagem esperada não foi exibida!");
     }
 
-}
+    @Then("deve ser exibida mensagem de senha inválida")
+    public void validarSenhaInvalida() {
+            String mensagem = page.validarSenhaInvalida();
+            Assert.isTrue(mensagem.contains("Senha fraca/Invalida"),
+                    "Mensagem de Senha inválido não exibida");
+        }
+
+    @Then("deve ser exibida mensagem de cep inválido")
+    public void validarCepInvalido() {
+        String mensagem = page.validarCepInvalido();
+        Assert.isTrue(mensagem.contains("CEP Invalido"),
+                "Mensagem de Cep inválido não exibida");
+    }
+
+    @Then("deve ser exibida mensagem de cpf inválido")
+    public void validarCpfInvalido() {
+        String mensagem = page.validarCpfInvalido();
+        Assert.isTrue(mensagem.contains("CPF Invalido"),
+                "Mensagem de Cpf inválido não exibida");
+    }
+
+
+    }
